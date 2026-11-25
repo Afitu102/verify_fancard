@@ -1,0 +1,464 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fan Card Verification</title><link rel="stylesheet" href="style.css"><style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#080e20;
+    color:white;
+    min-height:100vh;
+    padding:20px;
+}
+
+.verify-container{
+    max-width:500px;
+    margin:35px auto;
+}
+
+.brand{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.brand h1{
+    color:#e6c66b;
+    font-size:25px;
+    letter-spacing:1px;
+}
+
+.brand p{
+    color:#aaa;
+    font-size:13px;
+    margin-top:7px;
+}
+
+.verify-card{
+    background:#101a32;
+    border:1px solid #3b3b35;
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 10px 35px rgba(0,0,0,.3);
+}
+
+.status-box{
+    text-align:center;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:22px;
+    background:#172b25;
+    border:1px solid #26734d;
+}
+
+.status-box h2{
+    color:#45d483;
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.status-box p{
+    color:#c3c3c3;
+    font-size:12px;
+}
+
+.status-box.inactive{
+    background:#30271a;
+    border-color:#a77b25;
+}
+
+.status-box.inactive h2{
+    color:#f0bd55;
+}
+
+.status-box.invalid{
+    background:#321d25;
+    border-color:#a83245;
+}
+
+.status-box.invalid h2{
+    color:#ff6478;
+}
+
+.fan-profile{
+    text-align:center;
+    padding-bottom:22px;
+    border-bottom:1px solid #30394c;
+}
+
+.fan-photo{
+    width:115px;
+    height:115px;
+    border-radius:50%;
+    object-fit:cover;
+    border:3px solid #d4af37;
+    background:#202b40;
+    margin-bottom:12px;
+}
+
+.fan-profile h2{
+    font-size:22px;
+    color:#fff;
+    margin-bottom:6px;
+}
+
+.fan-profile .fan-id{
+    color:#e6c66b;
+    font-size:13px;
+    letter-spacing:1px;
+}
+
+.details{
+    padding-top:20px;
+}
+
+.detail-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px 0;
+    border-bottom:1px solid #283248;
+    font-size:13px;
+}
+
+.detail-row span:first-child{
+    color:#aaa;
+}
+
+.detail-row span:last-child{
+    color:#fff;
+    text-align:right;
+    font-weight:bold;
+    overflow-wrap:anywhere;
+}
+
+.celebrity-section{
+    text-align:center;
+    margin-top:22px;
+    padding:18px;
+    background:#0b1428;
+    border-radius:10px;
+}
+
+.celebrity-section p{
+    color:#aaa;
+    font-size:12px;
+    margin-bottom:10px;
+}
+
+.celebrity-photo{
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #d4af37;
+    margin-bottom:8px;
+}
+
+.celebrity-section h3{
+    color:#e6c66b;
+    font-size:16px;
+}
+
+.disclaimer{
+    color:#888;
+    font-size:11px;
+    line-height:1.6;
+    text-align:center;
+    margin-top:22px;
+}
+
+.footer{
+    text-align:center;
+    color:#777;
+    font-size:11px;
+    margin-top:20px;
+}
+
+.message{
+    text-align:center;
+    padding:35px 15px;
+    color:#ccc;
+    line-height:1.7;
+}
+
+.message h2{
+    color:#e6c66b;
+    margin-bottom:10px;
+}
+
+.hidden{
+    display:none;
+}
+
+@media(max-width:480px){
+    body{
+        padding:12px;
+    }
+
+    .verify-container{
+        margin:20px auto;
+    }
+
+    .verify-card{
+        padding:18px;
+    }
+
+    .detail-row{
+        font-size:12px;
+    }
+}
+</style></head><body><div class="verify-container"><div class="brand">
+    <h1>FAN CARD VERIFICATION</h1>
+    <p>Official Fan Membership Verification Portal</p>
+</div>
+
+<div class="verify-card">
+
+    <div id="loadingMessage" class="message">
+        <h2>Verifying Fan Card...</h2>
+        Please wait while we check this membership record.
+    </div>
+
+    <div id="invalidMessage" class="message hidden">
+        <h2>INVALID FAN CARD</h2>
+        <p>This Fan ID could not be found in our verification database.</p>
+    </div>
+
+    <div id="errorMessage" class="message hidden">
+        <h2>Verification Unavailable</h2>
+        <p>We could not complete the verification right now. Please try again later.</p>
+    </div>
+
+    <div id="fanDetails" class="hidden">
+
+        <div id="statusBox" class="status-box">
+            <h2 id="statusText">ACTIVE</h2>
+            <p id="statusDescription">This membership record is valid.</p>
+        </div>
+
+        <div class="fan-profile">
+            <img id="fanPhoto" class="fan-photo" alt="Fan photo">
+
+            <h2 id="fanName">Fan Name</h2>
+
+            <p class="fan-id">
+                FAN ID: <span id="fanId"></span>
+            </p>
+        </div>
+
+        <div class="details">
+
+            <div class="detail-row">
+                <span>Membership Type</span>
+                <span id="membershipType"></span>
+            </div>
+
+            <div class="detail-row">
+                <span>Gender</span>
+                <span id="gender"></span>
+            </div>
+
+            <div class="detail-row">
+                <span>Country</span>
+                <span id="fanCountry"></span>
+            </div>
+
+            <div class="detail-row">
+                <span>Date Registered</span>
+                <span id="createdAt"></span>
+            </div>
+
+        </div>
+
+        <div class="celebrity-section">
+            <p>Celebrity Membership Category</p>
+
+            <img id="celebrityPhoto"
+                 class="celebrity-photo"
+                 alt="Celebrity photo">
+
+            <h3 id="celebrityName"></h3>
+        </div>
+
+        <p class="disclaimer">
+            This verification confirms the membership record stored
+            on this platform. This card is not issued, approved,
+            sponsored or endorsed by the celebrity or their representatives.
+        </p>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    &copy; <span id="currentYear"></span> Fan Card Verification.
+    All rights reserved.
+</div>
+
+</div><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script>
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAcsmFNYMRjfEtT5snprxwp1aFccEAOouE",
+    authDomain: "fan-card-verification.firebaseapp.com",
+    projectId: "fan-card-verification",
+    storageBucket: "fan-card-verification.firebasestorage.app",
+    messagingSenderId: "836921060622",
+    appId: "1:836921060622:web:ae484298277da204a37b5f"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+const db = firebase.firestore();
+
+const loadingMessage = document.getElementById("loadingMessage");
+const invalidMessage = document.getElementById("invalidMessage");
+const errorMessage = document.getElementById("errorMessage");
+const fanDetails = document.getElementById("fanDetails");
+
+document.getElementById("currentYear").textContent =
+    new Date().getFullYear();
+
+function showMessage(element){
+    loadingMessage.classList.add("hidden");
+    invalidMessage.classList.add("hidden");
+    errorMessage.classList.add("hidden");
+    fanDetails.classList.add("hidden");
+
+    element.classList.remove("hidden");
+}
+
+function setImage(element, source){
+    if(source && typeof source === "string"){
+        element.src = source;
+        element.style.display = "inline-block";
+    }else{
+        element.style.display = "none";
+    }
+}
+
+function formatDate(value){
+
+    if(!value) return "Not available";
+
+    if(value.toDate){
+        return value.toDate().toLocaleDateString();
+    }
+
+    const date = new Date(value);
+
+    if(!isNaN(date.getTime())){
+        return date.toLocaleDateString();
+    }
+
+    return "Not available";
+}
+
+async function verifyFanCard(){
+
+    const params = new URLSearchParams(window.location.search);
+    const fanId = params.get("id");
+
+    if(!fanId){
+        showMessage(invalidMessage);
+        return;
+    }
+
+    try{
+
+        const doc = await db.collection("fanCards")
+                            .doc(fanId)
+                            .get();
+
+        if(!doc.exists){
+            showMessage(invalidMessage);
+            return;
+        }
+
+        const data = doc.data();
+
+        document.getElementById("fanName").textContent =
+            data.fanName || "Not available";
+
+        document.getElementById("fanId").textContent =
+            data.fanId || fanId;
+
+        document.getElementById("membershipType").textContent =
+            data.membershipType || "Not available";
+
+        document.getElementById("gender").textContent =
+            data.gender || "Not available";
+
+        document.getElementById("fanCountry").textContent =
+            data.fanCountry || "Not available";
+
+        document.getElementById("createdAt").textContent =
+            formatDate(data.createdAt);
+
+        document.getElementById("celebrityName").textContent =
+            data.celebrityName || "Not available";
+
+        setImage(
+            document.getElementById("fanPhoto"),
+            data.fanPhoto
+        );
+
+        setImage(
+            document.getElementById("celebrityPhoto"),
+            data.celebrityPhoto
+        );
+
+        const status = String(data.status || "ACTIVE").toUpperCase();
+
+        const statusBox = document.getElementById("statusBox");
+        const statusText = document.getElementById("statusText");
+        const statusDescription =
+            document.getElementById("statusDescription");
+
+        statusBox.classList.remove("inactive", "invalid");
+
+        if(status === "ACTIVE"){
+
+            statusText.textContent = "ACTIVE";
+            statusDescription.textContent =
+                "This membership record is active.";
+
+        }else if(status === "INACTIVE"){
+
+            statusBox.classList.add("inactive");
+            statusText.textContent = "INACTIVE";
+            statusDescription.textContent =
+                "This membership is currently inactive.";
+
+        }else{
+
+            statusBox.classList.add("invalid");
+            statusText.textContent = "INVALID";
+            statusDescription.textContent =
+                "This membership record is not valid.";
+
+        }
+
+        showMessage(fanDetails);
+
+    }catch(error){
+
+        console.error("Verification error:", error);
+
+        showMessage(errorMessage);
+
+    }
+
+}
+
+verifyFanCard();
+
+</script></body>
+</html>
