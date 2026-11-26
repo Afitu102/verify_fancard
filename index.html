@@ -1,51 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Fan Card Verification</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
     min-height:100vh;
     background:
-        radial-gradient(ellipse at 15% 65%,rgba(112,35,190,.35),transparent 40%),
-        radial-gradient(ellipse at 85% 25%,rgba(117,40,200,.25),transparent 38%),
-        linear-gradient(135deg,#080511,#10091f 55%,#080511);
+    radial-gradient(ellipse at 15% 65%,rgba(112,35,190,.35),transparent 40%),
+    radial-gradient(ellipse at 85% 25%,rgba(117,40,200,.25),transparent 38%),
+    linear-gradient(135deg,#080511,#10091f 55%,#080511);
     color:white;
     overflow-x:hidden;
 }
 
-/* BACKGROUND LIGHTS */
-
-body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background:
-        radial-gradient(circle at 10% 80%,rgba(173,88,255,.18),transparent 3%),
-        radial-gradient(circle at 90% 70%,rgba(173,88,255,.2),transparent 4%),
-        radial-gradient(circle at 50% 5%,rgba(146,70,255,.12),transparent 30%);
-    z-index:0;
-}
-
 .page{
     position:relative;
-    z-index:1;
     min-height:100vh;
     padding:35px 20px;
 }
-
-/* HEADER */
 
 .header{
     max-width:1200px;
@@ -72,8 +56,6 @@ body::before{
     background:linear-gradient(135deg,#c18aff,#7527c9);
     font-size:23px;
     font-weight:bold;
-    color:white;
-    box-shadow:0 0 25px rgba(157,81,255,.4);
 }
 
 .logo h2{
@@ -86,8 +68,6 @@ body::before{
     font-size:11px;
     letter-spacing:1.5px;
 }
-
-/* MAIN PANEL */
 
 .verification-container{
     max-width:1200px;
@@ -105,22 +85,16 @@ body::before{
     border:2px solid #9b50e9;
     border-radius:28px;
     background:
-        radial-gradient(ellipse at 50% 10%,rgba(131,60,210,.2),transparent 55%),
-        linear-gradient(140deg,rgba(30,17,54,.97),rgba(12,9,25,.98));
+    radial-gradient(ellipse at 50% 10%,rgba(131,60,210,.2),transparent 55%),
+    linear-gradient(140deg,rgba(30,17,54,.97),rgba(12,9,25,.98));
     box-shadow:
-        0 0 20px rgba(154,69,236,.25),
-        0 0 65px rgba(126,46,199,.15),
-        inset 0 0 40px rgba(155,76,226,.06);
+    0 0 20px rgba(154,69,236,.25),
+    0 0 65px rgba(126,46,199,.15);
 }
-
-/* CONFETTI */
 
 .confetti{
     position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    inset:0;
     overflow:hidden;
     pointer-events:none;
     border-radius:26px;
@@ -136,8 +110,8 @@ body::before{
     animation:fall 5s infinite linear;
 }
 
-.confetti span:nth-child(1){left:8%;top:5%;animation-delay:0s;}
-.confetti span:nth-child(2){left:24%;top:2%;animation-delay:1s;background:#e0b5ff;}
+.confetti span:nth-child(1){left:8%;top:5%;}
+.confetti span:nth-child(2){left:24%;top:2%;animation-delay:1s;}
 .confetti span:nth-child(3){left:42%;top:7%;animation-delay:2s;}
 .confetti span:nth-child(4){left:65%;top:3%;animation-delay:.5s;}
 .confetti span:nth-child(5){left:82%;top:8%;animation-delay:1.5s;}
@@ -148,8 +122,6 @@ body::before{
     100%{transform:translateY(250px) rotate(360deg);}
 }
 
-/* FAN CARD */
-
 .fan-card{
     position:relative;
     z-index:2;
@@ -157,27 +129,13 @@ body::before{
     padding:24px 19px;
     border-radius:19px;
     color:#21172f;
-    background:
-        linear-gradient(145deg,#f0e7ff,#cbb0f6 45%,#f6eaff 75%,#d9c4ff);
+    background:linear-gradient(145deg,#f0e7ff,#cbb0f6 45%,#f6eaff 75%,#d9c4ff);
     box-shadow:0 15px 45px rgba(0,0,0,.4);
     overflow:hidden;
 }
 
-.fan-card::before{
-    content:"";
-    position:absolute;
-    width:200px;
-    height:200px;
-    background:rgba(255,255,255,.25);
-    border-radius:50%;
-    top:-100px;
-    right:-80px;
-}
-
 .card-brand{
     text-align:center;
-    position:relative;
-    z-index:1;
     margin-bottom:17px;
 }
 
@@ -201,12 +159,6 @@ body::before{
     border-radius:50%;
     border:4px solid white;
     background:#d6c5ed;
-    box-shadow:0 5px 18px rgba(0,0,0,.15);
-}
-
-.card-details{
-    position:relative;
-    z-index:1;
 }
 
 .card-detail{
@@ -228,7 +180,6 @@ body::before{
 
 .card-id{
     font-size:11px!important;
-    letter-spacing:.5px;
 }
 
 .card-status{
@@ -249,8 +200,6 @@ body::before{
     font-size:11px;
 }
 
-/* CENTRE CONTENT */
-
 .main-content{
     position:relative;
     z-index:2;
@@ -267,20 +216,14 @@ body::before{
     align-items:center;
     margin:0 auto 25px;
     font-size:58px;
-    font-weight:bold;
     color:white;
-    box-shadow:
-        0 0 15px #b56cff,
-        0 0 35px rgba(171,92,255,.7),
-        inset 0 0 20px rgba(177,106,255,.2);
-    text-shadow:0 0 15px #c28aff;
+    box-shadow:0 0 15px #b56cff,0 0 35px rgba(171,92,255,.7);
 }
 
 .main-content h1{
     font-size:34px;
     line-height:1.3;
     margin-bottom:18px;
-    color:#fff;
 }
 
 .fan-welcome{
@@ -301,7 +244,6 @@ body::before{
     font-size:21px;
     font-weight:bold;
     line-height:1.5;
-    color:white;
     margin-bottom:20px;
 }
 
@@ -321,8 +263,6 @@ body::before{
     line-height:1.8;
     margin-bottom:23px;
 }
-
-/* CELEBRITY */
 
 .celebrity-mini{
     display:flex;
@@ -357,8 +297,6 @@ body::before{
     font-size:14px;
 }
 
-/* CONTACT BUTTON */
-
 .contact-btn{
     display:inline-flex;
     justify-content:center;
@@ -371,13 +309,11 @@ body::before{
     text-decoration:none;
     font-size:13px;
     font-weight:bold;
-    box-shadow:0 5px 25px rgba(146,65,221,.4);
     transition:.3s;
 }
 
 .contact-btn:hover{
     transform:translateY(-3px);
-    box-shadow:0 8px 30px rgba(146,65,221,.6);
 }
 
 .contact-btn svg{
@@ -393,12 +329,6 @@ body::before{
 .whatsapp-btn{
     background:linear-gradient(90deg,#139c55,#24c66e);
 }
-
-.hidden{
-    display:none!important;
-}
-
-/* VERIFIED STAMP */
 
 .stamp-area{
     position:relative;
@@ -453,8 +383,6 @@ body::before{
     font-size:9px;
 }
 
-/* FOOTER */
-
 .footer{
     max-width:1200px;
     margin:30px auto 0;
@@ -464,13 +392,12 @@ body::before{
     line-height:1.8;
 }
 
-/* LOADING / ERROR */
-
 .message{
     text-align:center;
     padding:65px 20px;
     line-height:1.8;
     color:#c8b5dc;
+    grid-column:1/-1;
 }
 
 .message h2{
@@ -478,7 +405,20 @@ body::before{
     margin-bottom:12px;
 }
 
-/* MOBILE */
+.error-details{
+    margin-top:15px;
+    padding:12px;
+    border:1px solid #70417f;
+    border-radius:8px;
+    color:#ffb4c1;
+    font-size:12px;
+    overflow-wrap:anywhere;
+    text-align:left;
+}
+
+.hidden{
+    display:none!important;
+}
 
 @media(max-width:950px){
 
@@ -490,16 +430,6 @@ body::before{
 
     .stamp-area{
         grid-column:1/-1;
-        grid-row:2;
-    }
-
-    .verified-stamp{
-        width:105px;
-        height:105px;
-    }
-
-    .stamp-inner strong{
-        font-size:16px;
     }
 
     .fan-card{
@@ -541,20 +471,6 @@ body::before{
         min-height:380px;
     }
 
-    .main-content{
-        grid-row:2;
-    }
-
-    .stamp-area{
-        grid-row:3;
-    }
-
-    .big-check{
-        width:80px;
-        height:80px;
-        font-size:45px;
-    }
-
     .main-content h1{
         font-size:26px;
     }
@@ -593,279 +509,227 @@ body::before{
 
 <div class="page">
 
-    <header class="header">
+<header class="header">
 
-        <div class="logo">
-            <div class="logo-icon">F</div>
-            <h2>FAN MEMBERSHIP</h2>
+    <div class="logo">
+        <div class="logo-icon">F</div>
+        <h2>FAN MEMBERSHIP</h2>
+    </div>
+
+    <div class="header-label">
+        MEMBERSHIP VERIFICATION PORTAL
+    </div>
+
+</header>
+
+
+<main class="verification-container">
+
+<div class="verification-panel">
+
+    <div class="confetti">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+
+    <!-- LOADING -->
+
+    <div id="loadingMessage" class="message">
+
+        <h2>Verifying Fan Card...</h2>
+
+        Please wait while we retrieve this membership record.
+
+    </div>
+
+
+    <!-- INVALID -->
+
+    <div id="invalidMessage" class="message hidden">
+
+        <h2>Invalid Fan Card</h2>
+
+        This Fan ID could not be found in the verification database.
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="errorMessage" class="message hidden">
+
+        <h2>Verification Unavailable</h2>
+
+        We could not complete verification.
+
+        <div id="errorDetails" class="error-details hidden"></div>
+
+    </div>
+
+
+    <!-- FAN DETAILS -->
+
+    <div id="fanDetails" class="hidden">
+
+        <!-- FAN CARD -->
+
+        <div class="fan-card">
+
+            <div class="card-brand">
+                <h3>FAN CLUB</h3>
+                <p>MEMBERSHIP CARD</p>
+            </div>
+
+            <img id="fanPhoto" class="card-photo" alt="Fan photograph">
+
+            <div class="card-detail">
+                <small>Member Name</small>
+                <strong id="cardFanName"></strong>
+            </div>
+
+            <div class="card-detail">
+                <small>Fan ID</small>
+                <strong id="cardFanId" class="card-id"></strong>
+            </div>
+
+            <div class="card-detail">
+                <small>Membership Status</small>
+
+                <strong class="card-status">
+                    <span id="cardMembershipStatus"></span>
+                    <span class="card-check">✓</span>
+                </strong>
+            </div>
+
+            <div class="card-detail">
+                <small>Membership Type</small>
+                <strong id="cardMembershipType"></strong>
+            </div>
+
         </div>
 
-        <div class="header-label">
-            MEMBERSHIP VERIFICATION PORTAL
+
+        <!-- MAIN CONTENT -->
+
+        <div class="main-content">
+
+            <div class="big-check">✓</div>
+
+            <h1>Fan Card Verification Complete!</h1>
+
+            <h2 class="fan-welcome" id="fanName"></h2>
+
+            <p class="success-text">
+                Your fan membership record has been successfully verified.
+            </p>
+
+            <p class="membership-message">
+                You are now a
+                <span class="highlight" id="membershipDisplay"></span>
+                of <span id="celebrityNameInline"></span>!
+            </p>
+
+            <div class="heart">♥</div>
+
+            <p class="support-message" id="supportMessage"></p>
+
+            <div class="celebrity-mini">
+
+                <img id="celebrityPhoto" alt="Celebrity photograph">
+
+                <div>
+                    <small>ASSOCIATED CELEBRITY</small>
+                    <strong id="celebrityName"></strong>
+                </div>
+
+            </div>
+
+
+            <!-- TELEGRAM -->
+
+            <a
+                id="telegramButton"
+                class="contact-btn telegram-btn hidden"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.894 8.224-1.973 9.3c-.146.66-.535.82-1.083.51l-2.99-2.204-1.443 1.39c-.16.16-.295.295-.604.295l.215-3.045 5.543-5.008c.241-.214-.052-.334-.375-.12l-6.85 4.315-2.952-.922c-.642-.2-.655-.642.134-.95l11.54-4.45c.535-.194 1.002.13.838.889z"/>
+                </svg>
+
+                Chat on Telegram
+
+            </a>
+
+
+            <!-- WHATSAPP -->
+
+            <a
+                id="whatsappButton"
+                class="contact-btn whatsapp-btn hidden"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <svg viewBox="0 0 24 24">
+                    <path d="M20.52 3.48A11.87 11.87 0 0 0 12.08 0C5.5 0 .14 5.36.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.25-1.64a11.9 11.9 0 0 0 5.82 1.48h.01c6.58 0 11.94-5.36 11.94-11.94 0-3.19-1.24-6.19-3.5-8.42zM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.24-.37a9.86 9.86 0 0 1-1.52-5.25c0-5.46 4.45-9.9 9.91-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.9 7.01c0 5.46-4.45 9.9-9.91 9.9zm5.43-7.41c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.49-.89-.79-1.49-1.77-1.67-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.13-.27-.2-.57-.35z"/>
+                </svg>
+
+                Chat on WhatsApp
+
+            </a>
+
         </div>
 
-    </header>
 
+        <!-- VERIFIED STAMP -->
 
-    <main class="verification-container">
+        <div class="stamp-area">
 
-        <div class="verification-panel">
+            <div class="verified-stamp">
 
-            <div class="confetti">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-
-            <!-- LOADING -->
-
-            <div id="loadingMessage" class="message"
-                 style="grid-column:1/-1;">
-
-                <h2>Verifying Fan Card...</h2>
-
-                Please wait while we retrieve this membership record.
-
-            </div>
-
-
-            <!-- INVALID -->
-
-            <div id="invalidMessage" class="message hidden"
-                 style="grid-column:1/-1;">
-
-                <h2>Invalid Fan Card</h2>
-
-                This Fan ID could not be found in the verification database.
-
-            </div>
-
-
-            <!-- ERROR -->
-
-            <div id="errorMessage" class="message hidden"
-                 style="grid-column:1/-1;">
-
-                <h2>Verification Unavailable</h2>
-
-                Please try again later.
-
-            </div>
-
-
-            <!-- VERIFIED CONTENT -->
-
-            <div id="fanDetails" class="hidden"
-                 style="display:contents;">
-
-
-                <!-- FAN MEMBERSHIP CARD -->
-
-                <div class="fan-card">
-
-                    <div class="card-brand">
-
-                        <h3>FAN CLUB</h3>
-
-                        <p>MEMBERSHIP CARD</p>
-
-                    </div>
-
-                    <img
-                        id="fanPhoto"
-                        class="card-photo"
-                        alt="Fan photograph"
-                    >
-
-                    <div class="card-details">
-
-                        <div class="card-detail">
-
-                            <small>Member Name</small>
-
-                            <strong id="cardFanName"></strong>
-
-                        </div>
-
-                        <div class="card-detail">
-
-                            <small>Fan ID</small>
-
-                            <strong id="cardFanId" class="card-id"></strong>
-
-                        </div>
-
-                        <div class="card-detail">
-
-                            <small>Membership Status</small>
-
-                            <strong class="card-status">
-
-                                <span id="cardMembershipStatus"></span>
-
-                                <span class="card-check">✓</span>
-
-                            </strong>
-
-                        </div>
-
-                        <div class="card-detail">
-
-                            <small>Membership Validity</small>
-
-                            <strong id="validUntil">Indefinite</strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CENTRE CONTENT -->
-
-                <div class="main-content">
-
-                    <div class="big-check">✓</div>
-
-                    <h1>Fan Card Verification Complete!</h1>
-
-                    <h2 class="fan-welcome" id="fanName">
-                        Fan Name
-                    </h2>
-
-                    <p class="success-text">
-                        Your fan membership record has been successfully verified.
-                    </p>
-
-                    <p class="membership-message">
-
-                        You are now a
-                        <span class="highlight" id="membershipDisplay">
-                            registered member
-                        </span>
-                        of <span id="celebrityNameInline"></span>!
-
-                    </p>
-
-                    <div class="heart">♥</div>
-
-                    <p class="support-message" id="supportMessage">
-                        Thank you for your continued love and support.
-                        Your participation in this fan community is appreciated.
-                    </p>
-
-
-                    <!-- CELEBRITY -->
-
-                    <div class="celebrity-mini">
-
-                        <img
-                            id="celebrityPhoto"
-                            alt="Celebrity photograph"
-                        >
-
-                        <div>
-
-                            <small>ASSOCIATED CELEBRITY</small>
-
-                            <strong id="celebrityName"></strong>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- TELEGRAM BUTTON -->
-
-                    <a
-                        id="telegramButton"
-                        class="contact-btn telegram-btn hidden"
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm5.894 8.224-1.973 9.3c-.146.66-.535.82-1.083.51l-2.99-2.204-1.443 1.39c-.16.16-.295.295-.604.295l.215-3.045 5.543-5.008c.241-.214-.052-.334-.375-.12l-6.85 4.315-2.952-.922c-.642-.2-.655-.642.134-.95l11.54-4.45c.535-.194 1.002.13.838.889z"/>
-                        </svg>
-
-                        Chat on Telegram
-
-                    </a>
-
-
-                    <!-- WHATSAPP BUTTON -->
-
-                    <a
-                        id="whatsappButton"
-                        class="contact-btn whatsapp-btn hidden"
-                        href="#"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        <svg viewBox="0 0 24 24">
-                            <path d="M20.52 3.48A11.87 11.87 0 0 0 12.08 0C5.5 0 .14 5.36.14 11.94c0 2.1.55 4.15 1.6 5.96L0 24l6.25-1.64a11.9 11.9 0 0 0 5.82 1.48h.01c6.58 0 11.94-5.36 11.94-11.94 0-3.19-1.24-6.19-3.5-8.42zM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.62-.24-.37a9.86 9.86 0 0 1-1.52-5.25c0-5.46 4.45-9.9 9.91-9.9 2.65 0 5.14 1.03 7.01 2.9a9.84 9.84 0 0 1 2.9 7.01c0 5.46-4.45 9.9-9.91 9.9zm5.43-7.41c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.49-.89-.79-1.49-1.77-1.67-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.67-.51l-.57-.01c-.2 0-.52.07-.8.37-.27.3-1.05 1.02-1.05 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.08-.13-.27-.2-.57-.35z"/>
-                        </svg>
-
-                        Chat on WhatsApp
-
-                    </a>
-
-                </div>
-
-
-                <!-- VERIFIED STAMP -->
-
-                <div class="stamp-area">
-
-                    <div class="verified-stamp">
-
-                        <div class="stamp-inner">
-
-                            <span>✦ ✦ ✦</span>
-
-                            <strong>VERIFIED</strong>
-
-                            <small>✓ MEMBERSHIP ✓</small>
-
-                        </div>
-
-                    </div>
-
+                <div class="stamp-inner">
+                    <span>✦ ✦ ✦</span>
+                    <strong>VERIFIED</strong>
+                    <small>✓ MEMBERSHIP ✓</small>
                 </div>
 
             </div>
 
         </div>
 
-    </main>
+    </div>
+
+</div>
+
+</main>
 
 
-    <footer class="footer">
+<footer class="footer">
 
-        &copy; <span id="currentYear"></span>
-        Fan Membership Verification.
+    &copy; <span id="currentYear"></span>
+    Fan Membership Verification.
 
-        <br>
+    <br>
 
-        Membership records are displayed according to the information
-        registered on this platform.
+    All rights reserved.
 
-    </footer>
+</footer>
 
 </div>
 
 
-<!-- FIREBASE -->
+<!-- FIREBASE SDK -->
 
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 
@@ -882,40 +746,26 @@ const firebaseConfig = {
     appId: "1:836921060622:web:ae484298277da204a37b5f"
 };
 
-if(!firebase.apps.length){
-    firebase.initializeApp(firebaseConfig);
-}
-
-const db = firebase.firestore();
-
 
 /* PAGE ELEMENTS */
 
-const loadingMessage =
-    document.getElementById("loadingMessage");
-
-const invalidMessage =
-    document.getElementById("invalidMessage");
-
-const errorMessage =
-    document.getElementById("errorMessage");
-
-const fanDetails =
-    document.getElementById("fanDetails");
-
+const loadingMessage = document.getElementById("loadingMessage");
+const invalidMessage = document.getElementById("invalidMessage");
+const errorMessage = document.getElementById("errorMessage");
+const errorDetails = document.getElementById("errorDetails");
+const fanDetails = document.getElementById("fanDetails");
 
 document.getElementById("currentYear").textContent =
     new Date().getFullYear();
 
 
-/* DISPLAY MESSAGE */
+/* SHOW MESSAGE */
 
 function showMessage(element){
 
     loadingMessage.classList.add("hidden");
     invalidMessage.classList.add("hidden");
     errorMessage.classList.add("hidden");
-
     fanDetails.classList.add("hidden");
 
     element.classList.remove("hidden");
@@ -923,7 +773,32 @@ function showMessage(element){
 }
 
 
-/* SAFE IMAGE DISPLAY */
+/* SHOW ERROR DETAILS */
+
+function showVerificationError(error){
+
+    console.error("FAN VERIFICATION ERROR:", error);
+
+    showMessage(errorMessage);
+
+    errorDetails.classList.remove("hidden");
+
+    const code = error && error.code
+        ? error.code
+        : "Unknown error";
+
+    const message = error && error.message
+        ? error.message
+        : String(error);
+
+    errorDetails.textContent =
+        "Error code: " + code +
+        "\n\nDetails: " + message;
+
+}
+
+
+/* IMAGE HANDLING */
 
 function setImage(element,source){
 
@@ -931,6 +806,10 @@ function setImage(element,source){
 
         element.src = source;
         element.style.display = "block";
+
+        element.onerror = function(){
+            this.style.display = "none";
+        };
 
     }else{
 
@@ -952,13 +831,11 @@ function setupContactButton(data){
     const whatsappButton =
         document.getElementById("whatsappButton");
 
-
     telegramButton.classList.add("hidden");
     whatsappButton.classList.add("hidden");
 
     telegramButton.removeAttribute("href");
     whatsappButton.removeAttribute("href");
-
 
     const platform = String(
         data.contactPlatform || ""
@@ -996,7 +873,8 @@ function setupContactButton(data){
             data.whatsappNumber || ""
         ).replace(/\D/g,"");
 
-        const pattern = /^[1-9]\d{7,14}$/;
+        const pattern =
+            /^[1-9]\d{7,14}$/;
 
         if(!pattern.test(number)){
             return;
@@ -1012,7 +890,7 @@ function setupContactButton(data){
 }
 
 
-/* STATUS */
+/* MEMBERSHIP STATUS */
 
 function setupStatus(data){
 
@@ -1023,17 +901,18 @@ function setupStatus(data){
     const statusText =
         document.getElementById("cardMembershipStatus");
 
-    const statusBox =
+    const stamp =
         document.querySelector(".verified-stamp");
 
-    const validStatus = status === "ACTIVE";
+    if(status === "ACTIVE"){
 
-    statusText.textContent =
-        validStatus ? "Full Member" : status;
+        statusText.textContent = "ACTIVE";
 
-    if(!validStatus){
+    }else{
 
-        statusBox.style.opacity = ".45";
+        statusText.textContent = status;
+
+        stamp.style.opacity = ".45";
 
     }
 
@@ -1044,20 +923,50 @@ function setupStatus(data){
 
 async function verifyFanCard(){
 
-    const params = new URLSearchParams(
-        window.location.search
-    );
-
-    const fanId = params.get("id");
-
-    if(!fanId){
-
-        showMessage(invalidMessage);
-        return;
-
-    }
-
     try{
+
+        /* CHECK FIREBASE SDK */
+
+        if(typeof firebase === "undefined"){
+
+            throw new Error(
+                "Firebase SDK failed to load. Check your internet connection."
+            );
+
+        }
+
+
+        /* INITIALIZE FIREBASE */
+
+        if(!firebase.apps.length){
+
+            firebase.initializeApp(firebaseConfig);
+
+        }
+
+
+        const db = firebase.firestore();
+
+
+        /* GET FAN ID */
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const fanId = params.get("id");
+
+
+        if(!fanId){
+
+            showMessage(invalidMessage);
+
+            return;
+
+        }
+
+
+        /* FETCH FAN RECORD */
 
         const doc = await db
             .collection("fanCards")
@@ -1068,14 +977,25 @@ async function verifyFanCard(){
         if(!doc.exists){
 
             showMessage(invalidMessage);
+
             return;
 
         }
 
+
         const data = doc.data();
 
 
-        /* FAN DETAILS */
+        if(!data){
+
+            throw new Error(
+                "The fan record exists but contains no readable data."
+            );
+
+        }
+
+
+        /* FAN INFORMATION */
 
         const fanName =
             data.fanName || "Fan";
@@ -1105,11 +1025,8 @@ async function verifyFanCard(){
         document.getElementById("membershipDisplay").textContent =
             membershipType;
 
-        document.getElementById("cardMembershipStatus").textContent =
+        document.getElementById("cardMembershipType").textContent =
             membershipType;
-
-        document.getElementById("validUntil").textContent =
-            data.validUntil || "Indefinite";
 
 
         /* CELEBRITY */
@@ -1134,16 +1051,6 @@ async function verifyFanCard(){
         );
 
 
-        /* CONTACT */
-
-        setupContactButton(data);
-
-
-        /* STATUS */
-
-        setupStatus(data);
-
-
         /* PERSONALIZED MESSAGE */
 
         document.getElementById("supportMessage").textContent =
@@ -1153,7 +1060,17 @@ async function verifyFanCard(){
             ". Your participation in this fan community is appreciated.";
 
 
-        /* SHOW VERIFIED PAGE */
+        /* CONTACT BUTTON */
+
+        setupContactButton(data);
+
+
+        /* STATUS */
+
+        setupStatus(data);
+
+
+        /* SHOW PAGE */
 
         showMessage(fanDetails);
 
@@ -1161,19 +1078,14 @@ async function verifyFanCard(){
 
     catch(error){
 
-        console.error(
-            "Fan verification error:",
-            error
-        );
-
-        showMessage(errorMessage);
+        showVerificationError(error);
 
     }
 
 }
 
 
-/* START */
+/* START VERIFICATION */
 
 verifyFanCard();
 
