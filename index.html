@@ -26,7 +26,6 @@ body{
 }
 
 .page{
-    position:relative;
     min-height:100vh;
     padding:35px 20px;
 }
@@ -414,10 +413,20 @@ body{
     font-size:12px;
     overflow-wrap:anywhere;
     text-align:left;
+    white-space:pre-wrap;
 }
 
 .hidden{
     display:none!important;
+}
+
+.disclaimer{
+    max-width:850px;
+    margin:22px auto 0;
+    color:#9989aa;
+    font-size:10px;
+    line-height:1.7;
+    text-align:center;
 }
 
 @media(max-width:950px){
@@ -528,16 +537,10 @@ body{
 <div class="verification-panel">
 
     <div class="confetti">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
     </div>
 
-
-    <!-- LOADING -->
 
     <div id="loadingMessage" class="message">
 
@@ -548,8 +551,6 @@ body{
     </div>
 
 
-    <!-- INVALID -->
-
     <div id="invalidMessage" class="message hidden">
 
         <h2>Invalid Fan Card</h2>
@@ -558,8 +559,6 @@ body{
 
     </div>
 
-
-    <!-- ERROR -->
 
     <div id="errorMessage" class="message hidden">
 
@@ -572,11 +571,7 @@ body{
     </div>
 
 
-    <!-- FAN DETAILS -->
-
     <div id="fanDetails" class="hidden">
-
-        <!-- FAN CARD -->
 
         <div class="fan-card">
 
@@ -614,8 +609,6 @@ body{
         </div>
 
 
-        <!-- MAIN CONTENT -->
-
         <div class="main-content">
 
             <div class="big-check">✓</div>
@@ -636,7 +629,9 @@ body{
 
             <div class="heart">♥</div>
 
-            <p class="support-message" id="supportMessage"></p>
+            <p class="support-message" id="supportMessage">
+                Thank you for being part of this fan community.
+            </p>
 
             <div class="celebrity-mini">
 
@@ -649,8 +644,6 @@ body{
 
             </div>
 
-
-            <!-- TELEGRAM -->
 
             <a
                 id="telegramButton"
@@ -668,8 +661,6 @@ body{
 
             </a>
 
-
-            <!-- WHATSAPP -->
 
             <a
                 id="whatsappButton"
@@ -690,8 +681,6 @@ body{
         </div>
 
 
-        <!-- VERIFIED STAMP -->
-
         <div class="stamp-area">
 
             <div class="verified-stamp">
@@ -709,6 +698,13 @@ body{
     </div>
 
 </div>
+
+
+<p class="disclaimer">
+    This page confirms that a membership record exists in this website's
+    verification database. It does not independently establish endorsement
+    or authorization by a celebrity or their management.
+</p>
 
 </main>
 
@@ -754,6 +750,9 @@ const invalidMessage = document.getElementById("invalidMessage");
 const errorMessage = document.getElementById("errorMessage");
 const errorDetails = document.getElementById("errorDetails");
 const fanDetails = document.getElementById("fanDetails");
+
+
+/* CURRENT YEAR */
 
 document.getElementById("currentYear").textContent =
     new Date().getFullYear();
@@ -854,6 +853,7 @@ function setupContactButton(data){
             /^[a-zA-Z][a-zA-Z0-9_]{4,31}$/;
 
         if(!pattern.test(username)){
+            console.warn("Invalid Telegram username in fan record.");
             return;
         }
 
@@ -877,6 +877,7 @@ function setupContactButton(data){
             /^[1-9]\d{7,14}$/;
 
         if(!pattern.test(number)){
+            console.warn("Invalid WhatsApp number in fan record.");
             return;
         }
 
@@ -904,15 +905,13 @@ function setupStatus(data){
     const stamp =
         document.querySelector(".verified-stamp");
 
-    if(status === "ACTIVE"){
+    statusText.textContent = status;
 
-        statusText.textContent = "ACTIVE";
-
-    }else{
-
-        statusText.textContent = status;
+    if(status !== "ACTIVE"){
 
         stamp.style.opacity = ".45";
+
+        document.querySelector(".big-check").textContent = "!";
 
     }
 
@@ -1013,8 +1012,7 @@ async function verifyFanCard(){
         document.getElementById("cardFanName").textContent =
             fanName;
 
-        document.getElementById("fanId").textContent =
-            data.fanId || fanId;
+        /* FIXED: cardFanId is the correct HTML element ID */
 
         document.getElementById("cardFanId").textContent =
             data.fanId || fanId;
@@ -1028,17 +1026,14 @@ async function verifyFanCard(){
         document.getElementById("cardMembershipType").textContent =
             membershipType;
 
-
-        /* CELEBRITY */
+        document.getElementById("celebrityNameInline").textContent =
+            celebrityName;
 
         document.getElementById("celebrityName").textContent =
             celebrityName;
 
-        document.getElementById("celebrityNameInline").textContent =
-            celebrityName;
 
-
-        /* PHOTOGRAPHS */
+        /* PHOTOS */
 
         setImage(
             document.getElementById("fanPhoto"),
@@ -1055,9 +1050,15 @@ async function verifyFanCard(){
 
         document.getElementById("supportMessage").textContent =
             "Thank you, " + fanName +
-            ", for your continued love and support for " +
+            ", for being part of the " +
             celebrityName +
-            ". Your participation in this fan community is appreciated.";
+            " fan community. Your support and enthusiasm are appreciated. " +
+            "We are delighted to have you here!";
+
+
+        /* MEMBERSHIP STATUS */
+
+        setupStatus(data);
 
 
         /* CONTACT BUTTON */
@@ -1065,18 +1066,12 @@ async function verifyFanCard(){
         setupContactButton(data);
 
 
-        /* STATUS */
-
-        setupStatus(data);
-
-
-        /* SHOW PAGE */
+        /* DISPLAY VERIFIED DETAILS */
 
         showMessage(fanDetails);
 
-    }
 
-    catch(error){
+    }catch(error){
 
         showVerificationError(error);
 
